@@ -285,6 +285,9 @@ void tracking(String value[2] )
   float t = dht.readTemperature();
   value[0] = String(h);
   value[1] = String(t);
+  
+  updateData( pathTracking[0] , "value", value[0] ) ;
+  updateData( pathTracking[1] , "value", value[1] ) ;
   if ( showDebug )
   {
     Serial.print("Humidity: ");
@@ -393,8 +396,6 @@ void loop()
 
   String dataTracking[2] ;
   tracking( dataTracking ) ;
-  updateData( pathTracking[0] , "value", dataTracking[0] ) ;
-  updateData( pathTracking[1] , "value", dataTracking[1] ) ;
   int count  = 0 ;
   for ( int i = 0; i < 7 ; i++ )
   {
