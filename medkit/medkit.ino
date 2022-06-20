@@ -458,6 +458,10 @@ void caiDatSoLuong_sang(int soNganThuoc){
 //    hienThiMotLed(box[soNganThuoc][1]);
 //  else 
   Serial.println(box[soNganThuoc][1]);
+        digitalWrite(led_sang, HIGH);
+      digitalWrite(led_trua, LOW);
+      digitalWrite(led_toi, LOW);
+      Serial.println("sang");
   hienThiHaiLed(box[soNganThuoc][1]);
 }
 //-------------------------
@@ -485,6 +489,10 @@ Serial.println(box[soNganThuoc][2]);
 //  if(box[soNganThuoc][2] % 10 == 0)
 //    hienThiMotLed(box[soNganThuoc][2]);
 //  else 
+      digitalWrite(led_sang, LOW);
+      digitalWrite(led_trua, HIGH);
+      digitalWrite(led_toi, LOW);
+      Serial.println("trua");
   hienThiHaiLed(box[soNganThuoc][2]);
 }
 //-------------------------
@@ -493,6 +501,7 @@ void caiDatSoLuong_toi(int soNganThuoc){
      while(digitalRead(button1)){
      }
 //     changeTru(&box[soNganThuoc][3]);
+        
      if(box[soNganThuoc][3] > 0){
         changeTru(&box[soNganThuoc][3]);
      }
@@ -512,6 +521,10 @@ void caiDatSoLuong_toi(int soNganThuoc){
 //    hienThiMotLed(box[soNganThuoc][3]);
 //    
 //  else 
+      digitalWrite(led_sang, LOW);
+      digitalWrite(led_trua, LOW);
+      digitalWrite(led_toi, HIGH);
+      Serial.println("toi");
   hienThiHaiLed(box[soNganThuoc][3]);
 }
 //-------------------------
@@ -520,6 +533,7 @@ void caiDatBaBuoi(int soNganThuoc){
       digitalWrite(led_trua, LOW);
       digitalWrite(led_toi, LOW);
       while (!digitalRead(button3)){ 
+        Serial.println("sang");
         caiDatSoLuong_sang(soNganThuoc);
       }
       while(digitalRead(button3)){
@@ -527,6 +541,7 @@ void caiDatBaBuoi(int soNganThuoc){
       digitalWrite(led_sang, LOW);
       digitalWrite(led_trua, HIGH);
       digitalWrite(led_toi, LOW);
+      Serial.println("trua");
       while(!digitalRead(button3)){
         caiDatSoLuong_trua(soNganThuoc);
       }
@@ -535,8 +550,11 @@ void caiDatBaBuoi(int soNganThuoc){
       digitalWrite(led_sang, LOW);
       digitalWrite(led_trua, LOW);
       digitalWrite(led_toi, HIGH);
+      Serial.println("toi");
       while(!digitalRead(button3)){
+       
         caiDatSoLuong_toi(soNganThuoc);
+        
       }
       while(digitalRead(button3)){
       }
@@ -546,6 +564,7 @@ void caiDat(int *cd){
   
   if (nhanDienMoNap() == 0 && digitalRead(button3) ){
     while(digitalRead(button3)){};
+    turnOnAllLed();
     *cd = 0;
   }
   else if (nhanDienMoNap() == 0 && !digitalRead(button3)){
