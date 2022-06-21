@@ -621,10 +621,9 @@ int checkTime(){
   DateTime now = rtc.now();
   
   int sesson = 0;
-  Serial.println(now.hour());
-  if( now.hour() == 7) sesson = 1;
-  if( now.hour() == 12) sesson = 2;
-  if( now.hour() == 18) sesson = 3;
+  if( now.hour() == 7 && now.minute() == 1) sesson = 1;
+  if( now.hour() == 12 && now.minute() == 1) sesson = 2;
+  if( now.hour() == 18 && now.minute() == 1) sesson = 3;
   return sesson;
 }
 //-------------------------
@@ -742,8 +741,6 @@ void suDung(int *cd){
   if( nhanDienMoNap() == 0){
     for(int i=1; i <= 7; i++){
         if(box[i][tg] > 0 && daLayThuoc[i] == 0){
-//          Serial.println("led_");
-//          Serial.println(i);
           batLed(i);
         }
         else tatLed(i);
