@@ -529,28 +529,18 @@ void caiDatSoLuong_toi(int soNganThuoc){
 }
 //-------------------------
 void caiDatBaBuoi(int soNganThuoc){
-      digitalWrite(led_sang, HIGH);
-      digitalWrite(led_trua, LOW);
-      digitalWrite(led_toi, LOW);
-      while (!digitalRead(button3)){ 
-        Serial.println("sang");
+
         caiDatSoLuong_sang(soNganThuoc);
       }
       while(digitalRead(button3)){
       }
-      digitalWrite(led_sang, LOW);
-      digitalWrite(led_trua, HIGH);
-      digitalWrite(led_toi, LOW);
-      Serial.println("trua");
+
       while(!digitalRead(button3)){
         caiDatSoLuong_trua(soNganThuoc);
       }
       while(digitalRead(button3)){
       }
-      digitalWrite(led_sang, LOW);
-      digitalWrite(led_trua, LOW);
-      digitalWrite(led_toi, HIGH);
-      Serial.println("toi");
+      
       while(!digitalRead(button3)){
        
         caiDatSoLuong_toi(soNganThuoc);
